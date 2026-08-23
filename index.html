@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohan Subhash Jagtap | AI Engineer & Machine Learning Specialist</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        warm: {
+                            50: '#fff8f6',
+                            100: '#ffeee9',
+                            200: '#ffdcd3',
+                            300: '#ffbead',
+                            400: '#ff927a',
+                            500: '#ff6647',
+                            600: '#f04322',
+                            700: '#ca3115',
+                            800: '#a62b16',
+                            900: '#23121b',
+                            950: '#150910',
+                        },
+                        amber: {
+                            glow: '#ff9d42',
+                        },
+                        coral: {
+                            light: '#ff8a75',
+                            DEFAULT: '#ff5e62',
+                            dark: '#e03e52',
+                        },
+                        peach: {
+                            DEFAULT: '#ff9a8b',
+                            soft: '#ffc3a0',
+                        }
+                    },
+                    backgroundImage: {
+                        'warm-gradient': 'linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #f09819 100%)',
+                        'sunset-glow': 'linear-gradient(135deg, #ff512f 0%, #dd2476 100%)',
+                        'amber-pink': 'linear-gradient(135deg, #f857a6 0%, #ff5858 100%)',
+                        'peach-gradient': 'linear-gradient(135deg, #ffc3a0 0%, #ffafbd 100%)',
+                        'card-gradient': 'linear-gradient(145deg, rgba(38, 20, 30, 0.75), rgba(26, 12, 20, 0.85))',
+                        'hero-glow': 'radial-gradient(circle at 50% 30%, rgba(255, 107, 107, 0.25), rgba(240, 152, 25, 0.1) 50%, transparent 70%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #170a13;
+            color: #fceee9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism elements */
+        .glass-card {
+            background: rgba(36, 18, 28, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 142, 83, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 142, 83, 0.4);
+            box-shadow: 0 12px 40px 0 rgba(255, 107, 107, 0.15);
+        }
+
+        .glass-nav {
+            background: rgba(23, 10, 19, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 142, 83, 0.15);
+        }
+
+        /* Warm Text Glows */
+        .text-glow-warm {
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5), 0 0 40px rgba(240, 152, 25, 0.3);
+        }
+
+        .text-gradient-warm {
+            background: linear-gradient(135deg, #ff8a75 0%, #ff8e53 40%, #ffc3a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-amber {
+            background: linear-gradient(135deg, #ffbead 0%, #ff9d42 50%, #f09819 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #150910;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff6647;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f09819;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Soft Pulse Ring */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .pulse-ring {
+            animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Canvas ambient background */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Image hover zoom */
+        .zoom-img {
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .zoom-card:hover .zoom-img {
+            transform: scale(1.06);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-warm-500 selection:text-white">
+
+    <!-- Ambient Glowing Particle Canvas Background -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-warm-gradient flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-warm-500/30 group-hover:scale-105 transition-transform">
+                    RJ
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-xl tracking-tight text-white group-hover:text-amber-glow transition-colors">
+                        Rohan Jagtap
+                    </span>
+                    <span class="block text-[10px] uppercase tracking-widest text-warm-300/70 font-semibold">Freelancer & Specialist</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-warm-200/80">
+                <a href="#about" class="hover:text-warm-400 transition-colors">About</a>
+                <a href="#expertise" class="hover:text-warm-400 transition-colors">Expertise</a>
+                <a href="#services" class="hover:text-warm-400 transition-colors">Services</a>
+                <a href="#experience" class="hover:text-warm-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-warm-400 transition-colors">Projects</a>
+                <a href="#certifications" class="hover:text-warm-400 transition-colors">Certifications</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="#contact" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-warm-gradient text-white shadow-lg shadow-warm-500/25 hover:shadow-warm-500/40 hover:scale-105 transition-all">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Hire Me
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-warm-200 text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden glass-card border-b border-warm-500/20 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-warm-100 hover:text-warm-400 font-medium py-1">About Me</a>
+            <a href="#expertise" class="block text-warm-100 hover:text-warm-400 font-medium py-1">Expertise</a>
+            <a href="#services" class="block text-warm-100 hover:text-warm-400 font-medium py-1">Freelance Services</a>
+            <a href="#experience" class="block text-warm-100 hover:text-warm-400 font-medium py-1">Experience</a>
+            <a href="#projects" class="block text-warm-100 hover:text-warm-400 font-medium py-1">Projects</a>
+            <a href="#certifications" class="block text-warm-100 hover:text-warm-400 font-medium py-1">Certifications</a>
+            <a href="#contact" class="inline-block w-full text-center px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-warm-gradient text-white shadow-lg mt-2">
+                Hire Me Now
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-card border border-warm-400/30 text-xs font-semibold text-warm-200 mb-8 animate-float">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 -ml-5"></span>
+                    <span>Available for Freelance AI & ML Consulting</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <p class="text-warm-400 font-semibold tracking-wider uppercase text-sm">
+                            My_Portfolio & Services
+                        </p>
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-tight text-white">
+                            Rohan Subhash <span class="text-gradient-warm text-glow-warm">Jagtap</span>
+                        </h1>
+                        <p class="text-xl sm:text-2xl font-medium text-warm-200/90 max-w-2xl">
+                            AI Engineer <span class="text-warm-400">|</span> Machine Learning Specialist <span class="text-warm-400">|</span> Full-Stack Developer
+                        </p>
+                        <p class="text-warm-300/80 text-base leading-relaxed max-w-2xl">
+                            Building production-ready Generative AI, Computer Vision, and Azure MLOps solutions. Ranked <strong class="text-amber-glow font-bold">#217 among 500K+ developers</strong> on GeeksforGeeks. Transforming complex client challenges into scalable intelligent software.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="https://www.linkedin.com/in/er-rohan-jagtap-088016290/" target="_blank" rel="noopener" class="px-7 py-3.5 rounded-full font-bold text-sm bg-warm-gradient text-white shadow-xl shadow-warm-500/30 hover:scale-105 hover:shadow-warm-500/50 transition-all flex items-center gap-2">
+                                <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn Profile
+                            </a>
+                            <a href="https://github.com/rohanbhaiya1705" target="_blank" rel="noopener" class="px-7 py-3.5 rounded-full font-bold text-sm glass-card text-warm-100 hover:bg-warm-500/20 hover:border-warm-400 transition-all flex items-center gap-2">
+                                <i class="fa-brands fa-github text-lg"></i> View GitHub
+                            </a>
+                            <a href="#contact" class="px-7 py-3.5 rounded-full font-bold text-sm border border-warm-400/40 text-warm-200 hover:text-white hover:bg-warm-400/10 transition-all">
+                                Hire Direct
+                            </a>
+                        </div>
+
+                        <!-- Core Traits Grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8">
+                            <div class="p-3.5 rounded-2xl glass-card text-center hover:border-warm-400/40 transition-all">
+                                <i class="fa-solid fa-users-gear text-warm-400 text-xl mb-1.5"></i>
+                                <h4 class="font-bold text-xs text-white uppercase tracking-wider">Leadership</h4>
+                                <p class="text-[11px] text-warm-300/70 mt-0.5">Guides teams to success</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl glass-card text-center hover:border-warm-400/40 transition-all">
+                                <i class="fa-solid fa-lightbulb text-amber-400 text-xl mb-1.5"></i>
+                                <h4 class="font-bold text-xs text-white uppercase tracking-wider">Innovation</h4>
+                                <p class="text-[11px] text-warm-300/70 mt-0.5">Drives creative solutions</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl glass-card text-center hover:border-warm-400/40 transition-all">
+                                <i class="fa-solid fa-microchip text-coral-light text-xl mb-1.5"></i>
+                                <h4 class="font-bold text-xs text-white uppercase tracking-wider">Expertise</h4>
+                                <p class="text-[11px] text-warm-300/70 mt-0.5">Deep technical knowledge</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl glass-card text-center hover:border-warm-400/40 transition-all">
+                                <i class="fa-solid fa-handshake text-pink-400 text-xl mb-1.5"></i>
+                                <h4 class="font-bold text-xs text-white uppercase tracking-wider">Collaboration</h4>
+                                <p class="text-[11px] text-warm-300/70 mt-0.5">Builds strong partnerships</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Hero Visual Card -->
+                    <div class="lg:col-span-5 relative flex justify-center">
+                        <!-- Glow behind card -->
+                        <div class="absolute inset-0 bg-warm-gradient rounded-full blur-3xl opacity-20 pulse-ring"></div>
+
+                        <div class="relative glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full border border-warm-400/30 text-center shadow-2xl">
+                            <!-- Avatar Ring -->
+                            <div class="relative w-48 h-48 mx-auto mb-6">
+                                <div class="absolute inset-0 rounded-full bg-warm-gradient p-1 animate-spin" style="animation-duration: 12s;"></div>
+                                <div class="w-full h-full rounded-full overflow-hidden bg-warm-900 border-4 border-warm-900 relative">
+                                    <img src="6228656418881998063_2.jpg" alt="Rohan Subhash Jagtap Profile" class="w-full h-full object-cover object-top">
+                                </div>
+                                <div class="absolute -bottom-1 -right-1 bg-warm-gradient text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                    AI Specialist
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold font-display text-white">Rohan Subhash Jagtap</h3>
+                            <p class="text-xs text-warm-300 uppercase tracking-widest font-semibold mt-1">AI Engineer & Specialist</p>
+
+                            <div class="mt-6 pt-6 border-t border-warm-500/20 space-y-3 text-left">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-warm-300/70"><i class="fa-solid fa-trophy text-amber-400 mr-2"></i>GeeksforGeeks Rank</span>
+                                    <span class="font-bold text-amber-glow">#217 (Top 0.04%)</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-warm-300/70"><i class="fa-solid fa-certificate text-warm-400 mr-2"></i>Microsoft Skill Badges</span>
+                                    <span class="font-bold text-warm-200">18+ Certifications</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-warm-300/70"><i class="fa-solid fa-bolt text-coral-light mr-2"></i>Real-time AI Inference</span>
+                                    <span class="font-bold text-emerald-400">&lt; 50ms (YOLOv7)</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-warm-300/70"><i class="fa-solid fa-chart-line text-pink-400 mr-2"></i>Model Precision</span>
+                                    <span class="font-bold text-warm-100">up to 99.1%</span>
+                                </div>
+                            </div>
+
+                            <a href="#contact" class="mt-6 w-full block py-3 rounded-xl bg-warm-500/20 hover:bg-warm-gradient text-warm-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all duration-300 border border-warm-400/30">
+                                Contact for Consulting
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- HIGHLIGHT STATS BAR -->
+        <section class="py-10 border-y border-warm-500/20 bg-warm-950/60 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 rounded-2xl glass-card">
+                        <span class="text-3xl sm:text-4xl font-extrabold font-display text-gradient-warm block">#217</span>
+                        <span class="text-xs font-semibold uppercase text-warm-300 tracking-wider">GeeksforGeeks Global Rank</span>
+                        <p class="text-[10px] text-warm-300/60 mt-1">Among 500K+ developers worldwide</p>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card">
+                        <span class="text-3xl sm:text-4xl font-extrabold font-display text-gradient-amber block">18+</span>
+                        <span class="text-xs font-semibold uppercase text-warm-300 tracking-wider">Microsoft Certifications</span>
+                        <p class="text-[10px] text-warm-300/60 mt-1">AI, Cloud & DevOps Mastery</p>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card">
+                        <span class="text-3xl sm:text-4xl font-extrabold font-display text-gradient-warm block">99.1%</span>
+                        <span class="text-xs font-semibold uppercase text-warm-300 tracking-wider">NLP Model Recall</span>
+                        <p class="text-[10px] text-warm-300/60 mt-1">Deployed on Azure Cloud</p>
+                    </div>
+                    <div class="p-4 rounded-2xl glass-card">
+                        <span class="text-3xl sm:text-4xl font-extrabold font-display text-gradient-amber block">1M+</span>
+                        <span class="text-xs font-semibold uppercase text-warm-300 tracking-wider">Interactions Analyzed</span>
+                        <p class="text-[10px] text-warm-300/60 mt-1">Production Data Analytics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME SECTION -->
+        <section id="about" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-user"></i> Personal Bio
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                            Driven by <span class="text-gradient-warm">Generative AI</span> & Full-Stack Excellence
+                        </h2>
+                        <p class="text-warm-200/90 leading-relaxed">
+                            I am an <strong>AI Engineer</strong> and <strong>Freelance Solutions Specialist</strong> with expertise in Generative AI, LLMs, Computer Vision, NLP, and Azure MLOps. I have a proven track record delivering production-ready solutions, optimizing ML pipelines, and drastically improving system accuracy.
+                        </p>
+                        <p class="text-warm-300/80 leading-relaxed text-sm">
+                            Ranked <span class="text-amber-glow font-semibold">#217 among 500K+ developers on GeeksforGeeks</span>, I demonstrate exceptional problem-solving skills, mathematical rigor, and algorithmic speed. Whether you need a custom RAG solution, fine-tuned transformer model, real-time vision application, or full-stack cloud web app, I bring end-to-end engineering rigor.
+                        </p>
+
+                        <!-- Quick Info list -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                            <div class="p-4 rounded-xl glass-card flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-warm-500/20 flex items-center justify-center text-warm-400 text-lg">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <span class="block text-[10px] text-warm-300/60 uppercase font-semibold">Direct Email</span>
+                                    <a href="mailto:2022kucp1117@iiikota.ac.in" class="text-xs text-warm-100 font-medium truncate hover:text-warm-400 transition-colors">2022kucp1117@iiikota.ac.in</a>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl glass-card flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-warm-500/20 flex items-center justify-center text-warm-400 text-lg">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-warm-300/60 uppercase font-semibold">Phone / WhatsApp</span>
+                                    <a href="tel:+919960569618" class="text-xs text-warm-100 font-medium hover:text-warm-400 transition-colors">+91 9960569618</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Profile Links -->
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <a href="https://learn.microsoft.com/en-us/users/rohanjagtap-0470/" target="_blank" class="px-4 py-2 rounded-xl glass-card text-xs font-semibold text-warm-200 hover:text-white hover:border-warm-400 flex items-center gap-2">
+                                <i class="fa-brands fa-microsoft text-blue-400"></i> Microsoft Profile
+                            </a>
+                            <a href="https://linktr.ee/rohan.jagtap_rj" target="_blank" class="px-4 py-2 rounded-xl glass-card text-xs font-semibold text-warm-200 hover:text-white hover:border-warm-400 flex items-center gap-2">
+                                <i class="fa-solid fa-tree text-emerald-400"></i> Linktree Hub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Highlight Graphic Card -->
+                    <div class="lg:col-span-6">
+                        <div class="glass-card rounded-3xl p-8 relative overflow-hidden border border-warm-400/30 shadow-2xl">
+                            <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-warm-gradient rounded-full blur-3xl opacity-20"></div>
+
+                            <h3 class="text-xl font-bold font-display text-white mb-6 flex items-center justify-between">
+                                Key Freelance Highlights
+                                <i class="fa-solid fa-star text-amber-glow text-lg"></i>
+                            </h3>
+
+                            <div class="space-y-6">
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-glow text-xl shrink-0">
+                                        #217
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">GeeksforGeeks Elite Developer</h4>
+                                        <p class="text-xs text-warm-300/80 mt-1">Ranked #217 among 500K+ developers globally. Verified DSA and algorithm solving speed.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-coral/20 border border-coral/30 flex items-center justify-center text-coral-light text-xl shrink-0">
+                                        <i class="fa-solid fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">GenAI & RAG Specialist</h4>
+                                        <p class="text-xs text-warm-300/80 mt-1">End-to-end implementation of LLMs, vector search (FAISS/Chroma), HuggingFace models, and prompt engineering.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 rounded-2xl bg-warm-500/20 border border-warm-400/30 flex items-center justify-center text-warm-400 text-xl shrink-0">
+                                        <i class="fa-solid fa-cloud"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white">Azure MLOps & Production Deployments</h4>
+                                        <p class="text-xs text-warm-300/80 mt-1">Building Dockerized microservices, CI/CD automated pipelines, REST APIs, and scalable cloud hosting.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES FOR FREELANCE CLIENTS -->
+        <section id="services" class="py-20 bg-warm-950/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-briefcase"></i> Solutions Offered
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                        Freelance <span class="text-gradient-warm">Services & Expertise</span>
+                    </h2>
+                    <p class="text-warm-300/80 text-sm mt-3">Tailored AI and Software Engineering services for startups, enterprise projects, and research teams.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Service 1 -->
+                    <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-warm-gradient flex items-center justify-center text-white text-2xl shadow-lg shadow-warm-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-display text-white mb-3">Custom GenAI & RAG Systems</h3>
+                            <p class="text-xs text-warm-300/80 leading-relaxed mb-6">
+                                Developing intelligent chatbot systems, domain-specific Retrieval-Augmented Generation (RAG) with FAISS/Chroma, LLM fine-tuning, and automated prompt workflows.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-warm-200/90 pt-4 border-t border-warm-500/20">
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> LangChain & HuggingFace Integration</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Vector DB Architecture</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Azure OpenAI API Consulting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-warm-gradient flex items-center justify-center text-white text-2xl shadow-lg shadow-warm-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-display text-white mb-3">Computer Vision & Object Detection</h3>
+                            <p class="text-xs text-warm-300/80 leading-relaxed mb-6">
+                                High-speed visual detection models utilizing YOLOv7, OpenCV, and CNNs for real-time video stream analysis, face recognition, and autonomous navigation.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-warm-200/90 pt-4 border-t border-warm-500/20">
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> YOLOv7 Custom Training</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Sub-50ms Inference Latency</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Facial Recognition Systems</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-warm-gradient flex items-center justify-center text-white text-2xl shadow-lg shadow-warm-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-display text-white mb-3">Azure MLOps & Pipeline Automation</h3>
+                            <p class="text-xs text-warm-300/80 leading-relaxed mb-6">
+                                End-to-end ML production pipelines, Docker containerization, REST API packaging, CI/CD automated deployments, and MLflow experiment tracking.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-warm-200/90 pt-4 border-t border-warm-500/20">
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Microsoft Azure Cloud Architecture</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Dockerized Microservices</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Automated Model Monitoring</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-warm-gradient flex items-center justify-center text-white text-2xl shadow-lg shadow-warm-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-display text-white mb-3">Full-Stack AI Web Applications</h3>
+                            <p class="text-xs text-warm-300/80 leading-relaxed mb-6">
+                                Building interactive frontend dashboards in React paired with high-performance Python backends (FastAPI/Flask) to bring machine learning models directly to users.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-warm-200/90 pt-4 border-t border-warm-500/20">
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> React + Tailwind UI/UX</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> RESTful API Architectures</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Web3 & Blockchain Integration</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-warm-gradient flex items-center justify-center text-white text-2xl shadow-lg shadow-warm-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-display text-white mb-3">NLP & Social Data Analytics</h3>
+                            <p class="text-xs text-warm-300/80 leading-relaxed mb-6">
+                                Sentiment analysis, spam detection models, text classification, and data visualization dashboards for processing millions of user interactions.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-warm-200/90 pt-4 border-t border-warm-500/20">
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Transformer Language Models</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> 99%+ Accuracy Systems</li>
+                            <li><i class="fa-solid fa-check text-warm-400 mr-2"></i> Big Data Dashboard Analytics</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group border-2 border-warm-500/40">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-sunset-glow flex items-center justify-center text-white text-2xl shadow-lg shadow-warm-500/20 mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-handshake-angle"></i>
+                            </div>
+                            <h3 class="text-xl font-bold font-display text-white mb-3">AI Technical Consulting</h3>
+                            <p class="text-xs text-warm-300/80 leading-relaxed mb-6">
+                                Strategic guidance on AI roadmap development, algorithm optimization, cloud cost reduction, and security compliance audits (IAM/Okta).
+                            </p>
+                        </div>
+                        <a href="#contact" class="w-full py-2.5 rounded-xl bg-warm-gradient text-white text-center font-bold text-xs uppercase tracking-wider block">
+                            Book Advisory Call
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL EXPERTISE MATRIX -->
+        <section id="expertise" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-layer-group"></i> Tech Stack
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                        Technical <span class="text-gradient-warm">Expertise</span>
+                    </h2>
+                    <p class="text-warm-300/80 text-sm mt-3">Comprehensive skill set spanning modern AI architectures, developer tools, languages, and cloud platforms.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Box 1: AI & ML -->
+                    <div class="glass-card rounded-2xl p-6 border border-warm-400/20 hover:border-warm-400/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-warm-500/20 text-warm-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-display text-white mb-3">AI & Machine Learning</h3>
+                        <p class="text-xs text-warm-300/80 mb-4 leading-relaxed">Deep Learning, Generative AI, LLMs, NLP, Transformers, YOLOv7, RAG Systems</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">Deep Learning</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">Generative AI</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">LLMs</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">NLP</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">Transformers</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">YOLOv7</span>
+                        </div>
+                    </div>
+
+                    <!-- Box 2: Frameworks & Tools -->
+                    <div class="glass-card rounded-2xl p-6 border border-warm-400/20 hover:border-warm-400/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-glow flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-display text-white mb-3">Frameworks & Tools</h3>
+                        <p class="text-xs text-warm-300/80 mb-4 leading-relaxed">PyTorch, TensorFlow, Keras, OpenCV, Scikit-Learn, HuggingFace, MLflow</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">PyTorch</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">TensorFlow</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">OpenCV</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">Scikit-Learn</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">HuggingFace</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">MLflow</span>
+                        </div>
+                    </div>
+
+                    <!-- Box 3: Programming Languages -->
+                    <div class="glass-card rounded-2xl p-6 border border-warm-400/20 hover:border-warm-400/50 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-coral/20 text-coral-light flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-display text-white mb-3">Programming Languages</h3>
+                        <p class="text-xs text-warm-300/80 mb-4 leading-relaxed">Python, C/C++, Java, MATLAB, SQL, JavaScript</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">Python</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">C / C++</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">Java</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">MATLAB</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">SQL</span>
+                            <span class="px-2.5 py-1 rounded-md bg-warm-900/80 text-warm-200 text-[11px] font-medium border border-warm-500/20">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Box 4: Cloud & MLOps -->
+                    <div class="glass-card rounded-2xl p-6 border border-warm-400/20 hover:border-warm-400/50 transition-all md:col-span-2">
+                        <div class="w-12 h-12 rounded-xl bg-warm-500/20 text-warm-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-cloud-gear"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-display text-white mb-2">Cloud & MLOps</h3>
+                        <p class="text-xs text-warm-300/80 mb-4">Microsoft Azure, Docker, CI/CD Automated Pipelines, REST APIs, Vector DBs (FAISS/Chroma)</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-brands fa-microsoft text-blue-400 mr-1.5"></i> Microsoft Azure</span>
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-brands fa-docker text-sky-400 mr-1.5"></i> Docker</span>
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-solid fa-arrows-rotate text-emerald-400 mr-1.5"></i> CI/CD Pipelines</span>
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-solid fa-plug text-amber-400 mr-1.5"></i> REST APIs</span>
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-solid fa-database text-purple-400 mr-1.5"></i> FAISS / Chroma Vector DB</span>
+                        </div>
+                    </div>
+
+                    <!-- Box 5: Web Development -->
+                    <div class="glass-card rounded-2xl p-6 border border-warm-400/20 hover:border-warm-400/50 transition-all md:col-span-1">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-glow flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold font-display text-white mb-2">Web Development</h3>
+                        <p class="text-xs text-warm-300/80 mb-4">React, HTML/CSS, JavaScript, Responsive UI/UX</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-brands fa-react text-cyan-400 mr-1.5"></i> React</span>
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-brands fa-html5 text-orange-400 mr-1.5"></i> HTML5/CSS3</span>
+                            <span class="px-3 py-1 rounded-lg bg-warm-900/90 text-warm-100 text-xs font-semibold border border-warm-500/20"><i class="fa-brands fa-js text-yellow-400 mr-1.5"></i> JavaScript</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL EXPERIENCE -->
+        <section id="experience" class="py-20 bg-warm-950/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-briefcase"></i> Work Track Record
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                        Professional <span class="text-gradient-warm">Experience</span>
+                    </h2>
+                    <p class="text-warm-300/80 text-sm mt-3">Demonstrated performance across AI research, cybersecurity analysis, data analytics, and full-stack development.</p>
+                </div>
+
+                <div class="relative border-l-2 border-warm-500/30 ml-4 md:ml-32 space-y-12">
+                    
+                    <!-- Item 1 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <!-- Timeline Counter badge -->
+                        <div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-warm-gradient text-white font-bold text-sm flex items-center justify-center shadow-lg shadow-warm-500/30">
+                            1
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-warm-400/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold font-display text-white">AI Research Intern</h3>
+                                    <p class="text-xs text-warm-400 font-semibold">Systemic Altruism</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-warm-500/20 text-warm-200 text-xs font-semibold border border-warm-400/20">
+                                    Sep 2024 – Mar 2025
+                                </span>
+                            </div>
+                            <ul class="space-y-2 text-xs sm:text-sm text-warm-200/90 list-disc list-inside">
+                                <li>Built decentralized AI analytics integrated with Web3 and Machine Learning algorithms.</li>
+                                <li>Designed blockchain-integrated reliability and risk assessment models.</li>
+                                <li>Co-authored research papers on decentralized AI system architectures.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-warm-gradient text-white font-bold text-sm flex items-center justify-center shadow-lg shadow-warm-500/30">
+                            2
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-warm-400/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold font-display text-white">Cybersecurity Analyst</h3>
+                                    <p class="text-xs text-warm-400 font-semibold">TATA Group</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-warm-500/20 text-warm-200 text-xs font-semibold border border-warm-400/20">
+                                    Sep 2024
+                                </span>
+                            </div>
+                            <ul class="space-y-2 text-xs sm:text-sm text-warm-200/90 list-disc list-inside">
+                                <li>Automated IAM via Okta / SailPoint achieving a <strong>30% security risk reduction</strong>.</li>
+                                <li>Conducted comprehensive enterprise security audits across critical systems.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-warm-gradient text-white font-bold text-sm flex items-center justify-center shadow-lg shadow-warm-500/30">
+                            3
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-warm-400/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold font-display text-white">Data Analytics Intern</h3>
+                                    <p class="text-xs text-warm-400 font-semibold">Accenture</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-warm-500/20 text-warm-200 text-xs font-semibold border border-warm-400/20">
+                                    Dec 2024
+                                </span>
+                            </div>
+                            <ul class="space-y-2 text-xs sm:text-sm text-warm-200/90 list-disc list-inside">
+                                <li>Built machine learning models achieving <strong>92% accuracy</strong> on social insight extraction.</li>
+                                <li>Created interactive analytics dashboards processing over <strong>1M+ user interactions</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="relative pl-8 md:pl-12 group">
+                        <div class="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-warm-gradient text-white font-bold text-sm flex items-center justify-center shadow-lg shadow-warm-500/30">
+                            4
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-warm-400/40 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold font-display text-white">Full Stack Developer</h3>
+                                    <p class="text-xs text-warm-400 font-semibold">Edureka</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-warm-500/20 text-warm-200 text-xs font-semibold border border-warm-400/20">
+                                    Nov 2023 – Dec 2023
+                                </span>
+                            </div>
+                            <ul class="space-y-2 text-xs sm:text-sm text-warm-200/90 list-disc list-inside">
+                                <li>Built user features directly improving sales conversion rates by <strong>25%</strong>.</li>
+                                <li>Optimized frontend assets and reduced page load speed by <strong>40%</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS -->
+        <section id="projects" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-diagram-project"></i> Portfolio Showcase
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                        Featured <span class="text-gradient-warm">Projects</span>
+                    </h2>
+                    <p class="text-warm-300/80 text-sm mt-3">High-impact machine learning and software engineering projects with real-world accuracy metrics.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Project 1 -->
+                    <div class="glass-card rounded-3xl overflow-hidden zoom-card border border-warm-400/20 hover:border-warm-400/50 transition-all flex flex-col justify-between">
+                        <div class="relative h-56 bg-warm-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80" alt="Autonomous Driving Model" class="w-full h-full object-cover zoom-img opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1a0c16] via-transparent to-transparent"></div>
+                            <div class="absolute top-4 left-4 bg-warm-gradient text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+                                Vision AI / YOLOv7
+                            </div>
+                            <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-amber-glow text-xs font-bold px-3 py-1 rounded-lg border border-amber-500/30">
+                                98.2% Accuracy
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold font-display text-white mb-2">Autonomous Driving Model</h3>
+                                <p class="text-xs sm:text-sm text-warm-300/80 leading-relaxed mb-4">
+                                    YOLOv7 object detector achieving <strong>98.2% accuracy</strong> with inference time <strong>under 50ms</strong> for real-time autonomous navigation performance.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-warm-500/20 flex items-center justify-between">
+                                <span class="text-[11px] text-warm-400 font-semibold"><i class="fa-solid fa-gauge-high mr-1"></i> &lt;50ms Real-Time</span>
+                                <a href="https://github.com/rohanbhaiya1705" target="_blank" class="text-xs font-bold text-warm-200 hover:text-white flex items-center gap-1.5">
+                                    View Source <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="glass-card rounded-3xl overflow-hidden zoom-card border border-warm-400/20 hover:border-warm-400/50 transition-all flex flex-col justify-between">
+                        <div class="relative h-56 bg-warm-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Facial Recognition System" class="w-full h-full object-cover zoom-img opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1a0c16] via-transparent to-transparent"></div>
+                            <div class="absolute top-4 left-4 bg-warm-gradient text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+                                CNN / Computer Vision
+                            </div>
+                            <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-amber-glow text-xs font-bold px-3 py-1 rounded-lg border border-amber-500/30">
+                                97% Precision @ 30 FPS
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold font-display text-white mb-2">Facial Recognition System</h3>
+                                <p class="text-xs sm:text-sm text-warm-300/80 leading-relaxed mb-4">
+                                    CNN-based recognition system with <strong>97% precision</strong> operating seamlessly at <strong>30 FPS</strong> for enterprise security applications.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-warm-500/20 flex items-center justify-between">
+                                <span class="text-[11px] text-warm-400 font-semibold"><i class="fa-solid fa-video mr-1"></i> 30 FPS Video Pipeline</span>
+                                <a href="https://github.com/rohanbhaiya1705" target="_blank" class="text-xs font-bold text-warm-200 hover:text-white flex items-center gap-1.5">
+                                    View Source <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="glass-card rounded-3xl overflow-hidden zoom-card border border-warm-400/20 hover:border-warm-400/50 transition-all flex flex-col justify-between">
+                        <div class="relative h-56 bg-warm-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Spam Detection System" class="w-full h-full object-cover zoom-img opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1a0c16] via-transparent to-transparent"></div>
+                            <div class="absolute top-4 left-4 bg-warm-gradient text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+                                NLP / Azure Deployment
+                            </div>
+                            <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-amber-glow text-xs font-bold px-3 py-1 rounded-lg border border-amber-500/30">
+                                99.1% Recall Rate
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold font-display text-white mb-2">Spam Detection (NLP System)</h3>
+                                <p class="text-xs sm:text-sm text-warm-300/80 leading-relaxed mb-4">
+                                    Hybrid NLP model achieving <strong>99.1% recall</strong>, successfully deployed on Microsoft Azure cloud platform for scalable enterprise email security.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-warm-500/20 flex items-center justify-between">
+                                <span class="text-[11px] text-warm-400 font-semibold"><i class="fa-brands fa-microsoft mr-1"></i> Hosted on Azure Cloud</span>
+                                <a href="https://github.com/rohanbhaiya1705" target="_blank" class="text-xs font-bold text-warm-200 hover:text-white flex items-center gap-1.5">
+                                    View Source <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="glass-card rounded-3xl overflow-hidden zoom-card border border-warm-400/20 hover:border-warm-400/50 transition-all flex flex-col justify-between">
+                        <div class="relative h-56 bg-warm-900 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Multilingual Translation Model" class="w-full h-full object-cover zoom-img opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#1a0c16] via-transparent to-transparent"></div>
+                            <div class="absolute top-4 left-4 bg-warm-gradient text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+                                Transformers / NLP
+                            </div>
+                            <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-amber-glow text-xs font-bold px-3 py-1 rounded-lg border border-amber-500/30">
+                                35% Latency Reduction
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold font-display text-white mb-2">Multilingual Translation Model</h3>
+                                <p class="text-xs sm:text-sm text-warm-300/80 leading-relaxed mb-4">
+                                    Transformer-based model supporting <strong>5 languages</strong> with optimized <strong>35% latency reduction</strong> for faster, real-time translations.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-warm-500/20 flex items-center justify-between">
+                                <span class="text-[11px] text-warm-400 font-semibold"><i class="fa-solid fa-language mr-1"></i> 5 Languages Supported</span>
+                                <a href="https://github.com/rohanbhaiya1705" target="_blank" class="text-xs font-bold text-warm-200 hover:text-white flex items-center gap-1.5">
+                                    View Source <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS & CREDENTIALS -->
+        <section id="certifications" class="py-20 bg-warm-950/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-certificate"></i> Verified Badges
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                        Certifications & <span class="text-gradient-warm">Credentials</span>
+                    </h2>
+                    <p class="text-warm-300/80 text-sm mt-3">Completed 18+ Microsoft Skills across AI, Cloud, and Development domains.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Cert 1 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-warm-400/50 transition-all flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-400/30 text-blue-400 flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-brands fa-microsoft"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Azure OpenAI Specialist</h3>
+                            <p class="text-xs text-warm-400 font-semibold mt-0.5">Microsoft Azure</p>
+                            <p class="text-[11px] text-warm-300/70 mt-2">LLM deployment, prompt engineering & cognitive search configuration.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cert 2 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-warm-400/50 transition-all flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-400/30 text-blue-400 flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Azure Vision Engineer</h3>
+                            <p class="text-xs text-warm-400 font-semibold mt-0.5">Microsoft Azure</p>
+                            <p class="text-[11px] text-warm-300/70 mt-2">Computer Vision APIs, custom vision model training & spatial analysis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cert 3 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-warm-400/50 transition-all flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-400/30 text-blue-400 flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Azure Speech Developer</h3>
+                            <p class="text-xs text-warm-400 font-semibold mt-0.5">Microsoft Azure</p>
+                            <p class="text-[11px] text-warm-300/70 mt-2">Speech-to-text, neural voice synthesis, and real-time audio translation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cert 4 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-warm-400/50 transition-all flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-warm-500/20 border border-warm-400/30 text-warm-400 flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">DevOps & Cloud Engineer</h3>
+                            <p class="text-xs text-warm-400 font-semibold mt-0.5">Cloud Infrastructure</p>
+                            <p class="text-[11px] text-warm-300/70 mt-2">Professional certification in cloud infrastructure, Docker containerization & deployment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cert 5 -->
+                    <div class="glass-card rounded-2xl p-6 hover:border-warm-400/50 transition-all flex items-start gap-4 sm:col-span-2 lg:col-span-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-400/30 text-amber-glow flex items-center justify-center text-2xl shrink-0">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">GenAI Fundamentals & Advanced ML</h3>
+                            <p class="text-xs text-warm-400 font-semibold mt-0.5">Microsoft Learn & AI Institutes</p>
+                            <p class="text-[11px] text-warm-300/70 mt-2">Foundational and enterprise expertise in Generative AI technologies, transformer fine-tuning, and responsible AI ethics.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS & EDUCATION -->
+        <section class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left: Achievements -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-award"></i> Honors & Awards
+                        </div>
+                        <h2 class="text-3xl font-display font-extrabold text-white">
+                            Achievements & <span class="text-gradient-warm">Recognition</span>
+                        </h2>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="glass-card rounded-2xl p-6 flex items-start gap-4 hover:border-warm-400/40 transition-all">
+                                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/30 text-amber-glow flex items-center justify-center text-xl shrink-0">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white">GeeksforGeeks Elite Rank (#217)</h3>
+                                    <p class="text-xs text-warm-300/80 mt-1">
+                                        Ranked #217 among 500K+ developers worldwide, demonstrating exceptional coding, DSA, and problem-solving abilities under strict constraint challenges.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl p-6 flex items-start gap-4 hover:border-warm-400/40 transition-all">
+                                <div class="w-12 h-12 rounded-2xl bg-coral/20 border border-coral/30 text-coral-light flex items-center justify-center text-xl shrink-0">
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white">Bronze Medalist - Computing Intelligence Olympiad</h3>
+                                    <p class="text-xs text-warm-300/80 mt-1">
+                                        Achieved Top 0.5% performance among all participants nationwide in algorithmic problem solving and logic computational models.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl p-6 flex items-start gap-4 hover:border-warm-400/40 transition-all">
+                                <div class="w-12 h-12 rounded-2xl bg-warm-500/20 border border-warm-400/30 text-warm-400 flex items-center justify-center text-xl shrink-0">
+                                    <i class="fa-solid fa-certificate"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white">Microsoft Certifications Master</h3>
+                                    <p class="text-xs text-warm-300/80 mt-1">
+                                        Completed 18+ Microsoft Skills modules spanning Generative AI, Speech, Computer Vision, DevOps, and Azure MLOps pipelines.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Education -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-graduation-cap"></i> Academic Background
+                        </div>
+                        <h2 class="text-3xl font-display font-extrabold text-white">
+                            Education
+                        </h2>
+
+                        <div class="space-y-4 pt-2">
+                            <!-- Degree 1 -->
+                            <div class="glass-card rounded-2xl p-6 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-warm-gradient rounded-full blur-2xl opacity-20"></div>
+                                <span class="px-3 py-1 rounded-full bg-warm-500/20 text-warm-300 text-[10px] font-bold border border-warm-400/20">
+                                    2022 – 2026 (Expected)
+                                </span>
+                                <h3 class="text-lg font-bold font-display text-white mt-3">B.Tech in Computer Science</h3>
+                                <p class="text-xs text-warm-300/70 mt-2">Specializing in Artificial Intelligence, Machine Learning, Data Structures, and Cloud Computing.</p>
+                            </div>
+
+                            <!-- Degree 2 -->
+                            <div class="glass-card rounded-2xl p-6 relative overflow-hidden">
+                                <span class="px-3 py-1 rounded-full bg-warm-500/20 text-warm-300 text-[10px] font-bold border border-warm-400/20">
+                                    2020 – 2022
+                                </span>
+                                <h3 class="text-lg font-bold font-display text-white mt-3">Junior College (HSC)</h3>
+                                <p class="text-xs font-bold text-warm-400">Dahiwadi College, Satara</p>
+                                <p class="text-xs text-warm-300/70 mt-2">Higher Secondary Education focused on Physics, Chemistry, and Higher Mathematics.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT & FREELANCE HIRE SECTION -->
+        <section id="contact" class="py-20 relative bg-warm-950/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left: Pitch & Social Channels -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warm-500/10 border border-warm-400/30 text-warm-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-paper-plane"></i> Let's Connect
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+                            Ready to Start Your <span class="text-gradient-warm">Projects?</span>
+                        </h2>
+                        <p class="text-warm-300/80 text-sm leading-relaxed">
+                            I am always interested in discussing AI innovations, freelance collaboration opportunities, custom RAG integrations, and challenging full-stack developments. Feel free to reach out through any channel below!
+                        </p>
+
+                        <!-- Links Stack -->
+                        <div class="space-y-3 pt-2">
+                            
+                            <a href="https://www.linkedin.com/in/er-rohan-jagtap-088016290/" target="_blank" class="glass-card rounded-xl p-4 flex items-center justify-between group hover:border-warm-400 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-white group-hover:text-warm-400 transition-colors">LinkedIn</span>
+                                        <span class="text-[11px] text-warm-300/60">Professional Profile & Network</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-warm-400 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+
+                            <a href="https://github.com/rohanbhaiya1705" target="_blank" class="glass-card rounded-xl p-4 flex items-center justify-between group hover:border-warm-400 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-gray-600/20 text-gray-300 flex items-center justify-center text-xl">
+                                        <i class="fa-brands fa-github"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-white group-hover:text-warm-400 transition-colors">GitHub</span>
+                                        <span class="text-[11px] text-warm-300/60">Open Source Code Portfolio</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-warm-400 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+
+                            <a href="https://learn.microsoft.com/en-us/users/rohanjagtap-0470/" target="_blank" class="glass-card rounded-xl p-4 flex items-center justify-between group hover:border-warm-400 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl">
+                                        <i class="fa-brands fa-microsoft"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-white group-hover:text-warm-400 transition-colors">Microsoft Learn</span>
+                                        <span class="text-[11px] text-warm-300/60">18+ Skill Badges & Certificates</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-warm-400 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+
+                            <a href="https://linktr.ee/rohan.jagtap_rj" target="_blank" class="glass-card rounded-xl p-4 flex items-center justify-between group hover:border-warm-400 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+                                        <i class="fa-solid fa-tree"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-white group-hover:text-warm-400 transition-colors">Linktree Hub</span>
+                                        <span class="text-[11px] text-warm-300/60">All Social & Developer Links</span>
+                                    </div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-xs text-warm-400 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Hire / Contact Form -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card rounded-3xl p-8 border border-warm-400/30 relative shadow-2xl">
+                            <h3 class="text-2xl font-bold font-display text-white mb-2">Send a Freelance Query</h3>
+                            <p class="text-xs text-warm-300/70 mb-6">Fill in details for project inquiries, consulting requests, or full-time opportunities.</p>
+
+                            <form id="contactForm" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-warm-200 mb-1">Your Name</label>
+                                        <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-warm-900/80 border border-warm-500/30 text-white text-xs focus:outline-none focus:border-warm-400 transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-warm-200 mb-1">Your Email</label>
+                                        <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-warm-900/80 border border-warm-500/30 text-white text-xs focus:outline-none focus:border-warm-400 transition-colors">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-warm-200 mb-1">Service Interested In</label>
+                                    <select class="w-full px-4 py-3 rounded-xl bg-warm-900/80 border border-warm-500/30 text-warm-200 text-xs focus:outline-none focus:border-warm-400 transition-colors">
+                                        <option>Generative AI & LLM Development</option>
+                                        <option>Computer Vision & Real-Time AI</option>
+                                        <option>Azure MLOps & Cloud Architecture</option>
+                                        <option>Full-Stack Web Development</option>
+                                        <option>General AI Consulting</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-warm-200 mb-1">Project Details / Message</label>
+                                    <textarea rows="4" required placeholder="Describe your project, required deliverables, timeline, or scope..." class="w-full px-4 py-3 rounded-xl bg-warm-900/80 border border-warm-500/30 text-white text-xs focus:outline-none focus:border-warm-400 transition-colors"></textarea>
+                                </div>
+
+                                <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+                                    <button type="submit" class="px-8 py-3.5 rounded-full bg-warm-gradient text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-warm-500/30 hover:scale-105 transition-all flex items-center gap-2">
+                                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                                    </button>
+
+                                    <div class="flex gap-3">
+                                        <a href="mailto:2022kucp1117@iiikota.ac.in" class="px-4 py-3 rounded-xl glass-card text-xs font-semibold text-warm-200 hover:text-white hover:border-warm-400">
+                                            <i class="fa-solid fa-envelope mr-1 text-warm-400"></i> Direct Mail
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/er-rohan-jagtap-088016290/" target="_blank" class="px-4 py-3 rounded-xl glass-card text-xs font-semibold text-warm-200 hover:text-white hover:border-warm-400">
+                                            <i class="fa-brands fa-linkedin mr-1 text-blue-400"></i> LinkedIn DM
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Form Success Feedback Toast -->
+                                <div id="formFeedback" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-semibold text-center mt-4">
+                                    <i class="fa-solid fa-circle-check mr-2 text-sm"></i> Thank you! Your message has been prepared. Rohan will get back to you shortly.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-warm-500/20 bg-warm-950 text-center text-xs text-warm-300/60">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-md bg-warm-gradient text-white font-bold text-xs flex items-center justify-center">RJ</div>
+                <span class="font-bold text-white text-sm">Rohan Subhash Jagtap</span>
+            </div>
+            <p>© <span id="year"></span> Rohan Subhash Jagtap. Designed for Freelance Excellence in AI & Engineering.</p>
+            <div class="flex gap-4 text-warm-300">
+                <a href="https://github.com/rohanbhaiya1705" target="_blank" class="hover:text-warm-400"><i class="fa-brands fa-github text-base"></i></a>
+                <a href="https://www.linkedin.com/in/er-rohan-jagtap-088016290/" target="_blank" class="hover:text-warm-400"><i class="fa-brands fa-linkedin text-base"></i></a>
+                <a href="mailto:2022kucp1117@iiikota.ac.in" class="hover:text-warm-400"><i class="fa-solid fa-envelope text-base"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form submission simulated handler
+        const contactForm = document.getElementById('contactForm');
+        const formFeedback = document.getElementById('formFeedback');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formFeedback.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+                formFeedback.classList.add('hidden');
+            }, 6000);
+        });
+
+        // Warm Floating Canvas Ambient Particles
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Warm Palette colors for ambient floating circles
+        const warmColors = [
+            'rgba(255, 107, 107, 0.15)', // Coral
+            'rgba(255, 142, 83, 0.12)',  // Amber
+            'rgba(240, 152, 25, 0.10)',  // Gold Warmth
+            'rgba(224, 62, 82, 0.08)',   // Rose Dark
+            'rgba(255, 195, 160, 0.12)'  // Peach Soft
+        ];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.radius = Math.random() * 80 + 30; // Soft large ambient spots
+                this.color = warmColors[Math.floor(Math.random() * warmColors.length)];
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < -this.radius) this.x = width + this.radius;
+                if (this.x > width + this.radius) this.x = -this.radius;
+                if (this.y < -this.radius) this.y = height + this.radius;
+                if (this.y > height + this.radius) this.y = -this.radius;
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 20; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            for (let particle of particles) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        animateCanvas();
+    </script>
+</body>
+</html>
